@@ -1,0 +1,60 @@
+.add-recipe{
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}
+
+.name-container,.info-container,.upload-container{
+    background-color: #D4D4D4;
+    padding:20px;
+}
+
+.ingredient-list,.tags-container,.instructions-list{
+    background-color: #BCBCBC;
+    padding:20px;
+}
+
+.ingredient-container{
+    margin-bottom:1rem;
+}
+
+.delete-ingredient-button{
+    margin-right:1rem;
+    padding:3px;
+}
+
+.portion-field{
+    width:45px;
+    margin-right:1rem;
+}
+
+.ingredient-field{
+    width:50px;
+}
+
+.add-ingredient-button{
+    padding:3px;
+}
+
+.time-field{
+    margin-bottom:0.75rem;
+}
+
+.upload-button{
+    width:100%;
+    padding:10px;
+    font-size:2rem;
+    background-color:aquamarine;
+    cursor:pointer;
+}
+
+.upload-button:hover{
+    background-color:rgb(44, 243, 177);
+}
+
+.instruction-area{
+    width:400px;
+    height:200px;
+    resize:none;
+}
