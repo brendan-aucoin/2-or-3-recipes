@@ -1,10 +1,21 @@
+:root{
+    --button-background: #EEEEEE;
+    --button-hover-background:#CBCBCA;
+}
 .add-recipe{
     margin: auto;
-    width: 50%;
+    width:75%;
     border: 3px solid green;
     padding: 10px;
 }
 
+.add-recipe input[type=text]{
+   padding:2px;
+   margin-left:0.4rem;
+}
+.add-recipe label{
+    font-size:1.2rem;
+}
 .name-container,.info-container,.upload-container{
     background-color: #D4D4D4;
     padding:20px;
@@ -15,32 +26,117 @@
     padding:20px;
 }
 
+/* the name container */
+.name-container{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.name-container div{
+    margin-bottom:1rem;
+}
+
+.text-field-label{
+    width:175px;
+    display: inline-block;
+}
+.pick-file-button{
+    padding:3px;
+    font-size:1rem;
+    border-radius:0.33rem;
+    cursor:pointer;
+    margin-right:0.3rem;
+    margin-left:0.5rem;
+    background-color: var(--button-background);
+}
+.pick-file-button:hover{
+    background-color: var(--button-hover-background);
+}
+
+/* the ingredient container */
+
 .ingredient-container{
     margin-bottom:1rem;
+    display:flex;
+}
+.delete-ingredient-button, .add-ingredient-button,.add-instruction-button,.delete-instruction-button{
+    padding:5px;
+    font-size:1rem;
+    background-color: var(--button-background);
+}
+
+.delete-ingredient-button:hover, .add-ingredient-button:hover, .add-instruction-button:hover, .delete-instruction-button:hover{
+    cursor:pointer;
+    background-color: var(--button-hover-background)    
 }
 
 .delete-ingredient-button{
     margin-right:1rem;
-    padding:3px;
+}
+
+.add-ingredient-button{
+    position:relative;
+    left:340px;
 }
 
 .portion-field{
-    width:45px;
+    width:75px;
     margin-right:1rem;
 }
 
 .ingredient-field{
-    width:50px;
+    width:200px;
 }
 
-.add-ingredient-button{
-    padding:3px;
+/* cooking information container */
+.info-container label{
+    display:inline-block;
+    width:200px;
+}
+
+/* the tags container */
+.tags-container{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(25%,1fr));
+    row-gap:20px;
+}
+.tags-container label{
+    margin-right:1rem;
+    display:inline-block;
+    width:120px;
+}
+.tag-check-box{
+    transform: scale(1.75);
+    cursor:pointer;
+    background-color: var(--button-background);
 }
 
 .time-field{
     margin-bottom:0.75rem;
 }
 
+/* instructions container */
+.instructions-list{
+    
+}
+.instruction-area{
+    width:400px;
+    height:200px;
+    resize:none;
+    margin-right:1rem;
+}
+
+.add-instruction-button{
+    position:relative;
+    left:450px;
+}
+
+.delete-instruction-button{
+    position:relative;
+    bottom:75px;
+}
+
+/* the upload container */
 .upload-button{
     width:100%;
     padding:10px;
@@ -53,8 +149,103 @@
     background-color:rgb(44, 243, 177);
 }
 
-.instruction-area{
-    width:400px;
-    height:200px;
-    resize:none;
+@media(max-width:1200px){
+    .name-container{
+        grid-template-columns: 1fr;
+    }
+    .add-recipe label{
+        font-size:1rem;
+    }
+    .pick-file-button{
+        font-size:0.75rem;
+    }
+    .tags-container{
+        grid-template-columns: repeat(auto-fit,minmax(33%,1fr));
+        row-gap:20px;
+    }
+}
+
+@media(max-width:760px){
+    .add-recipe{
+        width:95%;
+    }
+    .text-field-label{
+        width:150px;
+        display: inline-block;
+    }
+
+    .info-container label{
+        display:inline-block;
+        width:150px;
+    }
+}
+
+@media(max-width:620px){
+    .instruction-area{
+        width:300px;
+        height:150px;
+        margin-right:0.75rem;
+    }
+    .add-instruction-button{
+        left:330px;
+    }
+    .name-container,.info-container,.upload-container{
+        background-color: #D4D4D4;
+        padding:5px;
+    }
+    
+    .ingredient-list,.tags-container,.instructions-list{
+        background-color: #BCBCBC;
+        padding:5px;
+    }
+    
+}
+
+@media(max-width:480px){
+    .text-field-label{
+        display:block;
+        width:300px;
+    }
+    .info-container label{
+        display:block;
+        width:200px;
+    }
+
+    .tags-container{
+        grid-template-columns: repeat(auto-fit,minmax(50%,1fr));
+        row-gap:20px;
+    }
+    .add-recipe{
+        border:none;
+        padding:0;
+        margin:0;
+        width:100%;
+    }
+
+    .portion-field{
+        width:55px;
+    }
+    
+    .ingredient-field{
+        width:150px;
+    }
+    .add-ingredient-button{
+        left:280px;
+    }
+
+    .instruction-area{
+        width:250px;
+        height:150px;
+        margin-right:0.2rem;
+    }
+    
+    .add-instruction-button{
+        position:relative;
+        left:275px;
+    }
+    
+    .delete-instruction-button{
+        position:relative;
+        bottom:75px;
+    }
 }
