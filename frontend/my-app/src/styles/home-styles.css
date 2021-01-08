@@ -1,0 +1,72 @@
+.showcase{
+    height:100vh;
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    text-align:center;
+}
+
+.title{
+    font-size:4rem;
+    margin-bottom:2rem;
+    text-shadow: 1px 1px green;
+}
+
+.company-text{
+    font-size:1rem;
+    margin-bottom:4rem;
+}
+
+.action-buttons-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:3rem;
+}
+
+.action-button{
+    padding:20px;
+    border-radius:10px;
+    font-size:1.5rem;
+    background-color:blueviolet;
+    box-shadow:2px 2px grey;
+    cursor:pointer;
+
+}
+
+.action-button:hover{
+    background-color: rgb(76, 4, 143);
+}
+
+.action-button a{
+    text-decoration: none;
+    color:white;
+    cursor:pointer;
+}
+
+@media screen and (max-width:760px){
+    .action-buttons-container{
+        gap:1rem;
+    }
+    
+    .action-button{
+        padding:10px;
+        font-size:1.3rem;
+    
+    }
+
+}
+
+@media screen and (max-width:620px){
+    .title{
+        font-size:2rem;
+        margin-bottom:2rem;
+        text-shadow: 1px 1px green;
+    }
+    .action-buttons-container{
+        flex-direction: column;
+    }
+}
