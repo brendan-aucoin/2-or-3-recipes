@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './../styles/add-recipe-styles.css';
-import IngredientList from '../components/IngredientList';
-import Tags from '../components/Tags';
-import InstructionList from '../components/InstructionList';
-import NameRecipe from '../components/NameRecipe';
-import CookingInfo from '../components/CookingInfo';
+import IngredientList from '../components/make-recipe/IngredientList';
+import Tags from '../components/make-recipe/Tags';
+import InstructionList from '../components/make-recipe/InstructionList';
+import NameRecipe from '../components/make-recipe/NameRecipe';
+import CookingInfo from '../components/make-recipe/CookingInfo';
 import { v4 as uuidv4 } from 'uuid';
 
 class AddRecipe extends Component{

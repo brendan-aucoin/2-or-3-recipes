@@ -1,0 +1,112 @@
+
+:root{
+    --white:#F5FFFA;
+    --hover:#00BFFF;
+    --transition:0.4s;
+    --line-height:3rem;
+}
+
+.menu-bar{
+    height:3rem;
+    background:#224A6B;
+    color:var(--white);
+    padding:1rem 1rem;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+
+.logo{
+    float:left;
+    text-transform:uppercase;
+    line-height:var(--line-height);
+    margin-left:1vw;
+    font-size:2rem;
+    color:#FF8C00;
+    cursor:pointer;
+}
+
+.menu, .menu-active{
+    float:right;
+    line-height:var(--line-height);
+}
+
+.menu a, .menu-active a{
+    color:var(--white);
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:0 1rem;
+    transition:var(--transition);
+
+}
+
+
+.show-menu-button, .hide-menu-button{
+    transition:var(--transition);
+    font-size:2rem;
+    cursor:pointer;
+    display:none;
+    padding-right:1rem;
+}
+
+.show-menu-button{
+    float:right;
+}
+
+.menu a:hover, .menu-active a:hover,.show-menu-button:hover,.hide-menu-button:hover{
+    color:var(--hover);
+}
+
+#menu-burger{
+    position:absolute;
+    visibility:hidden;
+    z-index:-1111;
+}
+
+@media (max-width:800px){
+    .show-menu-button,.hide-menu-button{
+        display:block;
+        padding-top:0.5rem;    
+    }
+
+    .menu, .menu-active{
+        position:fixed;
+        width:45%;
+        height:100vh;
+        background:#2c2c2c;
+        right:-100%;
+        top:0;
+        text-align:center;
+        padding:5rem 0;
+        line-height:normal;
+        transition:0.45s;
+        z-index:1111;
+    }
+    .menu{
+        right:-100%;
+    }
+
+
+    .menu-active{
+        right:0%;
+    }
+
+    .menu a,.menu-active a{
+        display:block;
+        padding:1.5rem;
+        font-size:1rem;
+    }
+
+    .hide-menu-button{
+        position:absolute;
+        top:2rem;
+        right:1.5rem;
+    }
+
+}
+
+@media screen and (max-width:620px){
+    .menu, .menu-active{
+        width:50%;
+
+    }
+}

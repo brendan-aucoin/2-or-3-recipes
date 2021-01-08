@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import AddRecipe from './pages/AddRecipe';
+import Home from './pages/Home';
+import {BrowserRouter,Route} from 'react-router-dom';
+import './App.css'
+import Navbar from './components/navbar/Navbar';
 
 class App extends Component{
   state ={
@@ -9,10 +13,16 @@ class App extends Component{
   render(){
     // we will return the menu bar, and the routes to all our other pages, using react router, and the Routes
     return (
-      <div className = "App">
-        <AddRecipe />
-
-      </div>
+      <BrowserRouter>
+        <div className = "App">
+          <Navbar />
+          {/* the routes */}
+          <Route exact path = '/' component = {Home} />
+          {/* <Route path = '/all-recipes'  component = {AllRecipes}/> */}
+          {/* <Route path = '/all-recipes/:recipeId' component = {Recipe} /> */}
+          <Route path = '/make-recipe' component = {AddRecipe} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
