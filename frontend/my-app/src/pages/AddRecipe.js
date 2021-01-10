@@ -6,7 +6,7 @@ import InstructionList from '../components/make-recipe/InstructionList';
 import NameRecipe from '../components/make-recipe/NameRecipe';
 import CookingInfo from '../components/make-recipe/CookingInfo';
 import { v4 as uuidv4 } from 'uuid';
-
+import axios from 'axios';
 class AddRecipe extends Component{
     state = {
         selectedFile: null,
@@ -32,15 +32,13 @@ class AddRecipe extends Component{
     }
 
     fileSelectedHandler = e=>{
-        console.log(e.target.files[0])
+        
         this.setState({
             selectedFile: e.target.files[0]
         })
-
     }
 
     handleFieldChange = (e,property)=>{
-        console.log("HAPPEND");
         this.setState({
             [property]: e.target.value
         })
@@ -70,40 +68,61 @@ class AddRecipe extends Component{
 
     handleAddArray = (property,newElem)=>{
         if(this.state[property].length > 40){return}
-        // const newElem = { id: uuidv4(),portion:"",ingredient:""}
         newElem.id =  uuidv4();
         const newIngredients = [...this.state[property], newElem];
         this.setState({[property]:newIngredients})
+    }
+
+    handleSubmit = e=>{
+        e.preventDefault();
+        const form = new FormData();
+        form.append('recipeImage',this.state.selectedFile);
+        form.append("content",JSON.stringify(this.state))
+        const config = {
+            headers:{
+                'content-type':'multipart/form-data'
+            }
+        };
+        
+        axios.post('/upload-recipe',form,config).then(response=>{
+            console.log(response)
+        }).catch(error=>{
+            console.log(error.response);
+        })
     }
     
     render(){
         // contains all the components of the add recipe page
         return (
             <div className = "add-recipe">
-                <h2>Make a New Recipe</h2>
-                <br />
-                {/* the first section */}
-                <NameRecipe handleChange = {this.handleFieldChange} stateProps = {{recipeName:"recipeName",author:"author"}}selectedFile = {this.state.selectedFile} fileSelectedHandler = {this.fileSelectedHandler}/>
+                <form onSubmit = {this.handleSubmit}>
+                <img src =  'http://localhost:5000/uploads/corgi.jpg'  />
+                    <h2>Make a New Recipe</h2>
+                    <br />
+                    {/* the first section */}
+                    <NameRecipe handleChange = {this.handleFieldChange} stateProps = {{recipeName:"recipeName",author:"author"}}selectedFile = {this.state.selectedFile} fileSelectedHandler = {this.fileSelectedHandler}/>
+               
+                    {/* the ingredient list */}
+                    <h4>Ingredients</h4>
+                    {/* ({ingredients,handleAddIngredient,handleDeleteIngredient,handleChange}) */}
+                    <IngredientList ingredients = {this.state.ingredients} handleAddIngredient = {this.handleAddArray} handleDeleteIngredient = {this.handleDeleteArray} handleChange = {this.handleArrayChange}/>
+                    {/* the time container */}
+                    <h4>Cooking Information</h4>
+                    <CookingInfo handleChange = {this.handleFieldChange} stateProps = {{prepTime:"prepTime", cookTime:"cookTime",servings:"servings",calories:"calories"}} />
+                    <h4>Tags</h4>
+                    {/* tags */}
+                    <Tags tags = {this.state.allTags} handleClick = {this.handleTagChange} />
 
-                {/* the ingredient list */}
-                <h4>Ingredients</h4>
-                {/* ({ingredients,handleAddIngredient,handleDeleteIngredient,handleChange}) */}
-                <IngredientList ingredients = {this.state.ingredients} handleAddIngredient = {this.handleAddArray} handleDeleteIngredient = {this.handleDeleteArray} handleChange = {this.handleArrayChange}/>
-                {/* the time container */}
-                <h4>Cooking Information</h4>
-                <CookingInfo handleChange = {this.handleFieldChange} stateProps = {{prepTime:"prepTime", cookTime:"cookTime",servings:"servings",calories:"calories"}} />
-                <h4>Tags</h4>
-                {/* tags */}
-                <Tags tags = {this.state.allTags} handleClick = {this.handleTagChange} />
-
-                {/* the instructions */}
-                <h4>Instructions</h4>
-                {/* {instructions,handleAddInstruction,handleChange,handleDeleteInstruction}) */}
-                <InstructionList instructions = {this.state.instructions} handleAddInstruction = {this.handleAddArray} handleChange = {this.handleArrayChange} handleDeleteInstruction = {this.handleDeleteArray}/>
-                {/* the upload button */}
-                <div className="upload-container">
-                    <button className = "upload-button">Upload</button>
-                </div>
+                    {/* the instructions */}
+                    <h4>Instructions</h4>
+                    {/* {instructions,handleAddInstruction,handleChange,handleDeleteInstruction}) */}
+                    <InstructionList instructions = {this.state.instructions} handleAddInstruction = {this.handleAddArray} handleChange = {this.handleArrayChange} handleDeleteInstruction = {this.handleDeleteArray}/>
+                    {/* the upload button */}
+                    <div className="upload-container">
+                        <button type= "submit" className = "upload-button"> Upload </button>
+                    </div>
+                    
+                </form>
             </div>
         );
     }
