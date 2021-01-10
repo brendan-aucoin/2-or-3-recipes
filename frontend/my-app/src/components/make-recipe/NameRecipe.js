@@ -19,7 +19,7 @@ class NewRecipe extends Component{
                         <div className = "add-picture-container">
                             <label htmlFor="choose-picture-field">Add Picture of Recipe: </label>
                             <input id = "choose-picture-field" style = {{display:'none'}} type = "file" onChange = {this.props.fileSelectedHandler} ref = {fileInput => this.fileInput = fileInput}/>
-                            <button className = "pick-file-button" onClick = {() => this.fileInput.click()}>Pick File</button>
+                            <button type = "button" className = "pick-file-button" onClick = {() => this.fileInput.click()}>Pick File</button>
                             <span>({this.displayFileName()})</span>
                         </div>
                         <div className="author-name-container">

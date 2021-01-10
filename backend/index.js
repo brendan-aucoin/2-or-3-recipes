@@ -1,7 +1,28 @@
-fs = require('fs')
-path = require('path');
-express = require('express');
-const tags = []
-fs.readFile(path.join(__dirname,'tags.txt'),{encoding: 'utf-8'},(err,data)=>{
-    tags.push(data);
-});
+const fs = require('fs')
+const path = require('path');
+const cors = require('cors');
+const express = require('express');
+const bodyParser = require('body-parser');
+const apiController = require('./controllers/apiController');
+const connectMongoose = require('./connection');
+
+const PORT = 5000 || process.env.PORT;
+
+// all the tags we have
+const tags = fs.readFileSync(path.join(__dirname,'tags.txt'),{encoding: 'utf-8'}).split('\n');
+
+const app = express();
+
+app.use(bodyParser.json());
+app.use('/uploads',express.static('uploads'));
+
+//mongoose
+connectMongoose();
+
+const urlencodedParser = bodyParser.urlencoded({extended:false})
+apiController(app,urlencodedParser);
+console.log(`Listening to PORT: ${PORT}`);
+
+app.listen(PORT);
+
+

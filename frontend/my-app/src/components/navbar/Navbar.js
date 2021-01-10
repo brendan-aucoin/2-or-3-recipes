@@ -26,7 +26,7 @@ class Navbar extends Component{
     displayMenuItems = ()=>{
         return menuItems.map((item,index)=>{
             return (
-                <NavLink className = {item.cName} onClick = {this.resetNavbar} to = {item.url}>{item.content}</NavLink>
+                <NavLink key = {index} className = {item.cName} onClick = {this.resetNavbar} to = {item.url}>{item.content}</NavLink>
             );
         })
     }
@@ -34,7 +34,7 @@ class Navbar extends Component{
     render(){
         return (
             <div className = "menu-bar">
-                <h2 className = "logo">2 or 3 Recipes</h2>
+                <Link to = '/'><h2 className = "logo">2 or 3 Recipe</h2></Link>
                 <button id = "menu-burger" onClick = {this.handleClick}></button>
                 <label htmlFor = "menu-burger" className = "show-menu-button">
                      <FontAwesomeIcon  icon={faBars} /> 
