@@ -10,7 +10,9 @@ const recipe = new mongoose.Schema({
     servings:String,
     calories:String,
     tags:Array,
-    instructions:Array
+    instructions:Array,
+    date:Date,
+    description:String
 });
 
 module.exports = RecipeModel = mongoose.model('recipes',recipe);

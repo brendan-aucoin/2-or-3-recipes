@@ -6,7 +6,7 @@
     --line-height:3rem;
 }
 
-.menu-bar{
+.navbar{
     height:3rem;
     background:#224A6B;
     color:var(--white);
@@ -15,7 +15,7 @@
     overflow-y:hidden;
 }
 
-.logo{
+.navbar-logo{
     float:left;
     text-transform:uppercase;
     line-height:var(--line-height);
@@ -25,12 +25,12 @@
     cursor:pointer;
 }
 
-.menu, .menu-active{
+.nav-menu, .nav-menu-active{
     float:right;
     line-height:var(--line-height);
 }
 
-.menu a, .menu-active a{
+.nav-menu a, .nav-menu-active a{
     color:var(--white);
     text-transform:uppercase;
     text-decoration:none;
@@ -40,7 +40,7 @@
 }
 
 
-.show-menu-button, .hide-menu-button{
+.show-nav-menu-button, .hide-nav-menu-button{
     transition:var(--transition);
     font-size:2rem;
     cursor:pointer;
@@ -48,27 +48,27 @@
     padding-right:1rem;
 }
 
-.show-menu-button{
+.show-nav-menu-button{
     float:right;
 }
 
-.menu a:hover, .menu-active a:hover,.show-menu-button:hover,.hide-menu-button:hover{
+.nav-menu a:hover, .nav-menu-active a:hover,.show-nav-menu-button:hover,.hide-nav-menu-button:hover{
     color:var(--hover);
 }
 
-#menu-burger{
+#navbar-burger{
     position:absolute;
     visibility:hidden;
     z-index:-1111;
 }
 
 @media (max-width:800px){
-    .show-menu-button,.hide-menu-button{
+    .show-nav-menu-button,.hide-nav-menu-button{
         display:block;
         padding-top:0.5rem;    
     }
 
-    .menu, .menu-active{
+    .nav-menu, .nav-menu-active{
         position:fixed;
         width:45%;
         height:100vh;
@@ -81,22 +81,22 @@
         transition:0.45s;
         z-index:1111;
     }
-    .menu{
+    .nav-menu{
         right:-100%;
     }
 
 
-    .menu-active{
+    .nav-menu-active{
         right:0%;
     }
 
-    .menu a,.menu-active a{
+    .nav-menu a,.nav-menu-active a{
         display:block;
         padding:1.5rem;
         font-size:1rem;
     }
 
-    .hide-menu-button{
+    .hide-nav-menu-button{
         position:absolute;
         top:2rem;
         right:1.5rem;
@@ -105,7 +105,7 @@
 }
 
 @media screen and (max-width:620px){
-    .menu, .menu-active{
+    .nav-menu, .nav-menu-active{
         width:50%;
 
     }

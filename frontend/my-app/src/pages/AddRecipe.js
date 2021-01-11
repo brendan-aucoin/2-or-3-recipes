@@ -16,6 +16,7 @@ class AddRecipe extends Component{
         cookTime:"",
         servings:"",
         calories:"",
+        description:"",
         tags:[],
         ingredients:[
          {id: 1, ingredient: "", portion: ""},
@@ -32,7 +33,7 @@ class AddRecipe extends Component{
     }
 
     fileSelectedHandler = e=>{
-        
+       if(!e.target || !e.target.files){return;}
         this.setState({
             selectedFile: e.target.files[0]
         })
@@ -75,9 +76,12 @@ class AddRecipe extends Component{
 
     handleSubmit = e=>{
         e.preventDefault();
+        // check form validation
+        const deleteProperties = ['allTags','selectedFile'];
         const form = new FormData();
         form.append('recipeImage',this.state.selectedFile);
-        form.append("content",JSON.stringify(this.state))
+        form.append("content",JSON.stringify(this.state));
+        form.append('deleteProperties',JSON.stringify(deleteProperties))
         const config = {
             headers:{
                 'content-type':'multipart/form-data'
@@ -92,11 +96,13 @@ class AddRecipe extends Component{
     }
     
     render(){
+        // you need to validate the form: make sure theres at least 1 ingredient and 1 instruction
         // contains all the components of the add recipe page
         return (
-            <div className = "add-recipe">
+            <div className = "make-recipe">
+            
                 <form onSubmit = {this.handleSubmit}>
-                <img src =  'http://localhost:5000/uploads/corgi.jpg'  />
+                <img src =  'http://localhost:5000/uploads\\corgi.jpg:1610327493577'  />
                     <h2>Make a New Recipe</h2>
                     <br />
                     {/* the first section */}
@@ -108,7 +114,7 @@ class AddRecipe extends Component{
                     <IngredientList ingredients = {this.state.ingredients} handleAddIngredient = {this.handleAddArray} handleDeleteIngredient = {this.handleDeleteArray} handleChange = {this.handleArrayChange}/>
                     {/* the time container */}
                     <h4>Cooking Information</h4>
-                    <CookingInfo handleChange = {this.handleFieldChange} stateProps = {{prepTime:"prepTime", cookTime:"cookTime",servings:"servings",calories:"calories"}} />
+                    <CookingInfo handleChange = {this.handleFieldChange} stateProps = {{prepTime:"prepTime", cookTime:"cookTime",servings:"servings",calories:"calories",description:"description"}} />
                     <h4>Tags</h4>
                     {/* tags */}
                     <Tags tags = {this.state.allTags} handleClick = {this.handleTagChange} />
@@ -118,8 +124,8 @@ class AddRecipe extends Component{
                     {/* {instructions,handleAddInstruction,handleChange,handleDeleteInstruction}) */}
                     <InstructionList instructions = {this.state.instructions} handleAddInstruction = {this.handleAddArray} handleChange = {this.handleArrayChange} handleDeleteInstruction = {this.handleDeleteArray}/>
                     {/* the upload button */}
-                    <div className="upload-container">
-                        <button type= "submit" className = "upload-button"> Upload </button>
+                    <div className="make-recipe-upload-container">
+                        <button type= "submit" className = "make-recipe-upload-button"> Upload </button>
                     </div>
                     
                 </form>
