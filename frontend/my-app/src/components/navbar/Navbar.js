@@ -33,17 +33,17 @@ class Navbar extends Component{
     
     render(){
         return (
-            <div className = "menu-bar">
-                <Link to = '/'><h2 className = "logo">2 or 3 Recipe</h2></Link>
-                <button id = "menu-burger" onClick = {this.handleClick}></button>
-                <label htmlFor = "menu-burger" className = "show-menu-button">
+            <div className = "navbar">
+                <Link to = '/'><h2 className = "navbar-logo">2 or 3 Recipe</h2></Link>
+                <button id = "navbar-burger" onClick = {this.handleClick}></button>
+                <label htmlFor = "navbar-burger" className = "show-nav-menu-button">
                      <FontAwesomeIcon  icon={faBars} /> 
                 </label>
 
                 {/* the menu items */}
-                <ul className =  {this.state.clicked ?  "menu-active" : "menu"}>
+                <ul className =  {this.state.clicked ?  "nav-menu-active" : "nav-menu"}>
                     {this.displayMenuItems()}
-                    <label htmlFor = "menu-burger" className = "hide-menu-button">
+                    <label htmlFor = "navbar-burger" className = "hide-nav-menu-button">
                         <FontAwesomeIcon  icon={faTimes} /> 
                     </label>
                 </ul>
