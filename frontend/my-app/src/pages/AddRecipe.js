@@ -5,6 +5,8 @@ import Tags from '../components/make-recipe/Tags';
 import InstructionList from '../components/make-recipe/InstructionList';
 import NameRecipe from '../components/make-recipe/NameRecipe';
 import CookingInfo from '../components/make-recipe/CookingInfo';
+import tags from './../tags';
+
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 class AddRecipe extends Component{
@@ -27,10 +29,8 @@ class AddRecipe extends Component{
             {id: 1, content:""},
             {id:2, content:""}
         ],
-
-        // this will be read from the backend
-        allTags:["vegan", "vegetarian","baked goods","meat","breakfast","dinner","curry","lunch","easy","sandwich","gluten free","sauce"]
     }
+
 
     fileSelectedHandler = e=>{
        if(!e.target || !e.target.files){return;}
@@ -77,7 +77,7 @@ class AddRecipe extends Component{
     handleSubmit = e=>{
         e.preventDefault();
         // check form validation
-        const deleteProperties = ['allTags','selectedFile'];
+        const deleteProperties = ['selectedFile'];
         const form = new FormData();
         form.append('recipeImage',this.state.selectedFile);
         form.append("content",JSON.stringify(this.state));
@@ -102,7 +102,6 @@ class AddRecipe extends Component{
             <div className = "make-recipe">
             
                 <form onSubmit = {this.handleSubmit}>
-                <img src =  'http://localhost:5000/uploads\\corgi.jpg:1610327493577'  />
                     <h2>Make a New Recipe</h2>
                     <br />
                     {/* the first section */}
@@ -117,7 +116,7 @@ class AddRecipe extends Component{
                     <CookingInfo handleChange = {this.handleFieldChange} stateProps = {{prepTime:"prepTime", cookTime:"cookTime",servings:"servings",calories:"calories",description:"description"}} />
                     <h4>Tags</h4>
                     {/* tags */}
-                    <Tags tags = {this.state.allTags} handleClick = {this.handleTagChange} />
+                    <Tags tags = {tags} handleClick = {this.handleTagChange} />
 
                     {/* the instructions */}
                     <h4>Instructions</h4>

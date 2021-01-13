@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import AddRecipe from './pages/AddRecipe';
 import Home from './pages/Home';
+import RecipePage from './pages/RecipePage';
+
 import {BrowserRouter,Route} from 'react-router-dom';
 import './App.css'
 import Navbar from './components/navbar/Navbar';
-
 class App extends Component{
   state ={
     image:null
@@ -20,8 +21,9 @@ class App extends Component{
           {/* the routes */}
           <Route exact path = '/' component = {Home} />
           {/* <Route path = '/all-recipes'  component = {AllRecipes}/> */}
-          {/* <Route path = '/all-recipes/:recipeId' component = {Recipe} /> */}
+          <Route path = '/all-recipes/:recipeID' component = {RecipePage} />
           <Route path = '/make-recipe' component = {AddRecipe} />
+          
         </div>
       </BrowserRouter>
     );
