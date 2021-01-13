@@ -15,9 +15,9 @@ const Tags = ({tags,handleClick})=>{
 const displayTags = (tags,handleClick)=>{
     return tags.map(tag=>{
         return (
-            <div key = {tag}>
-                <label  htmlFor = {`tag-${tag}`} className = "make-recipe-tag-label">{tag}:</label>
-                 <input id = {`tag-${tag}`}onClick = {(e)=>handleClick(e,tag)} type = "checkbox" className = "make-recipe-tag-check-box" />
+            <div key = {tag.name}>
+                <label  htmlFor = {`tag-${tag.name}`} className = "make-recipe-tag-label">{tag.name}:</label>
+                 <input id = {`tag-${tag.name}`}onClick = {(e)=>handleClick(e,tag.name)} type = "checkbox" className = "make-recipe-tag-check-box" />
            </div>
         );
     });

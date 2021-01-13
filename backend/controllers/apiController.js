@@ -12,11 +12,13 @@ module.exports = function(app,urlencodedParser){
         // you dont wanna include certain state properties in the data base 
         const deleteProperties = JSON.parse(req.body.deleteProperties);
         deleteProperties.forEach(property=>delete recipeContent[property]);
-
         // if the user didnt include a file then just input null for the database image path
         let picture = req.file ? req.file.path : null;
         // on the database it turned \\(correct) to \(incorrect) so to fix you replace \\ with / ie: uploads\\dog.jpg => uploads/dog.jpg
-        picture = picture.replace("\\",'/');
+        if(picture){
+            picture = picture.replace("\\",'/');
+        }
+
         // create a new object with the content from the requests body, the picture path, and the date
         const savedRecipe = {
             ...recipeContent,
@@ -35,8 +37,17 @@ module.exports = function(app,urlencodedParser){
     app.get('/get-all-recipes',(req,res)=>{
         RecipeModel.find({},(err,data)=>{
             if(err){throw err}
-            console.log(data);
+            // console.log(data);
             res.json(data);
         })
-    })
+    });
+
+    app.get('/get-recipe/:recipeID',(req,res)=>{
+        RecipeModel.findById((req.params.recipeID)).then(doc=>{
+            res.json({recipe:doc})
+        }).catch(err=>{
+            console.log(err);
+        })
+        
+    });
 }

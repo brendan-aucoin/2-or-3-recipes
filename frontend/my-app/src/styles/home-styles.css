@@ -1,3 +1,7 @@
+hr{
+    margin-bottom:0.5rem;
+}
+
 .home-showcase{
     height:100vh;
     background-size:cover;
@@ -8,6 +12,7 @@
     align-items: center;
     padding: 0 20px;
     text-align:center;
+    margin-bottom:2rem;
 }
 
 .home-showcase-title{
@@ -49,6 +54,39 @@
     cursor:pointer;
 }
 
+/* the recipe showcases */
+.recipe-flex-showcase{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(20%,1fr));
+    /* justify-content: center; */
+    justify-items:center;
+    row-gap:2rem;
+    margin-bottom:2rem;
+}
+
+.recipe-flex-showcase-title{
+    margin-left:0.75rem;
+}
+
+
+
+@media screen and (max-width:1680px){
+    .recipe-flex-showcase{
+        grid-template-columns: repeat(auto-fit,minmax(25%,1fr));
+    }
+}
+
+@media screen and (max-width:1260px){
+    .recipe-flex-showcase{
+        grid-template-columns: repeat(auto-fit,minmax(33%,1fr));
+    }
+}
+
+@media screen and (max-width:920px){
+    .recipe-flex-showcase{
+        grid-template-columns: repeat(auto-fit,minmax(50%,1fr));
+    }
+}
 @media screen and (max-width:760px){
     .home-action-buttons-container{
         gap:1rem;
@@ -70,5 +108,9 @@
     }
     .home-action-buttons-container{
         flex-direction: column;
+    }
+
+    .recipe-flex-showcase{
+        grid-template-columns: 1fr
     }
 }
