@@ -5,7 +5,7 @@ import Tags from '../components/make-recipe/Tags';
 import InstructionList from '../components/make-recipe/InstructionList';
 import NameRecipe from '../components/make-recipe/NameRecipe';
 import CookingInfo from '../components/make-recipe/CookingInfo';
-import tags from './../tags';
+import {tags} from './../tags';
 
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
@@ -78,10 +78,13 @@ class AddRecipe extends Component{
         e.preventDefault();
         // check form validation
         const deleteProperties = ['selectedFile'];
+        const convertToNumberProperties = ['cookTime','prepTime','servings','calories'];
         const form = new FormData();
         form.append('recipeImage',this.state.selectedFile);
         form.append("content",JSON.stringify(this.state));
-        form.append('deleteProperties',JSON.stringify(deleteProperties))
+        form.append('deleteProperties',JSON.stringify(deleteProperties));
+        form.append('convertToNumberProperties',JSON.stringify(convertToNumberProperties));
+        
         const config = {
             headers:{
                 'content-type':'multipart/form-data'

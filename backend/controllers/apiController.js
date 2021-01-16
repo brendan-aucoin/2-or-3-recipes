@@ -3,6 +3,8 @@ const upload = require('./../storage.js');
 
 
 module.exports = function(app,urlencodedParser){
+    
+
     // the function where you add a new recipe to the database
     // you need the upload.single as the middleware
     app.post("/upload-recipe",urlencodedParser,upload.single('recipeImage'),(req,res)=>{
@@ -12,6 +14,12 @@ module.exports = function(app,urlencodedParser){
         // you dont wanna include certain state properties in the data base 
         const deleteProperties = JSON.parse(req.body.deleteProperties);
         deleteProperties.forEach(property=>delete recipeContent[property]);
+
+        // changing the prep,cook time,servings,and calories to numbers
+        const convertToNumberProperties = JSON.parse(req.body.convertToNumberProperties);
+        convertToNumberProperties.forEach(property=>convertStringToNumber(recipeContent,property))
+
+        
         // if the user didnt include a file then just input null for the database image path
         let picture = req.file ? req.file.path : null;
         // on the database it turned \\(correct) to \(incorrect) so to fix you replace \\ with / ie: uploads\\dog.jpg => uploads/dog.jpg
@@ -48,6 +56,16 @@ module.exports = function(app,urlencodedParser){
         }).catch(err=>{
             console.log(err);
         })
-        
     });
+
+
+    app.get('/*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'build', 'index.html'));
+      });
+}
+
+
+const convertStringToNumber = (object,property)=>{
+    const newNumber = Number(object[property]);
+    object[property] = (newNumber && newNumber>0) ? newNumber :null;
 }

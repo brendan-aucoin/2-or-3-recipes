@@ -1,6 +1,5 @@
 import React from 'react';
 import ImageUnnavailable from './../../img/image-unnavailable.jpg';
-import URL_PREFIX from './../recipes/recipe-url-prefix';
 
 const RecipeHeading = ({recipe,recipeDate})=>{
     return (
@@ -8,7 +7,7 @@ const RecipeHeading = ({recipe,recipeDate})=>{
             <div className = "recipe-page-heading">
                 <div className = "recipe-name-container">
                     <h1 className = "recipe-title">{recipe.recipeName}</h1>
-                    <img className = "recipe-page-picture" src ={recipe.picture ? `${URL_PREFIX}${recipe.picture}` : ImageUnnavailable} />
+                    <img className = "recipe-page-picture" src ={recipe.picture ? `/${recipe.picture}` : ImageUnnavailable} alt = '' />
                 </div>
 
                 <div className = "recipe-author-container">

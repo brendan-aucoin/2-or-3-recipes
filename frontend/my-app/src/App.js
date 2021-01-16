@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import AddRecipe from './pages/AddRecipe';
 import Home from './pages/Home';
 import RecipePage from './pages/RecipePage';
-
-import {BrowserRouter,Route} from 'react-router-dom';
+import AllRecipes from './pages/AllRecipes';
+import {BrowserRouter,Route, Switch} from 'react-router-dom';
 import './App.css'
 import Navbar from './components/navbar/Navbar';
+import Footer from './components/footer/Footer';
 class App extends Component{
   state ={
     image:null
-  }
+}
 
 
   render(){
@@ -19,11 +20,14 @@ class App extends Component{
         <div className = "App">
           <Navbar />
           {/* the routes */}
-          <Route exact path = '/' component = {Home} />
-          {/* <Route path = '/all-recipes'  component = {AllRecipes}/> */}
-          <Route path = '/all-recipes/:recipeID' component = {RecipePage} />
-          <Route path = '/make-recipe' component = {AddRecipe} />
+          <Switch>
+            <Route exact path = '/' component = {Home} />
+            <Route path = '/all-recipes/:recipeID' component = {RecipePage} />
+            <Route path = '/all-recipes'  component = {AllRecipes}/>
+            <Route path = '/make-recipe' component = {AddRecipe} />
+          </Switch>
           
+          <Footer />
         </div>
       </BrowserRouter>
     );

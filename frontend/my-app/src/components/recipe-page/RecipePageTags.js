@@ -14,17 +14,15 @@ const displayTags = (tags)=>{
     );
 }
 const RecipePageTags = ({tags,recipe})=>{
-    return (
+    return tags.length !== 0 ?(
         <div>
-            <h1>Tags</h1>
-        
+            <h1 className = "recipe-page-tags-title">Tags</h1>
             <div className = "recipe-page-tags">
                 {displayTags(tags)}
-
-                        
             </div>
         </div>
-    );
+    ) :
+    (<div></div>);
 }
 
 export default RecipePageTags;

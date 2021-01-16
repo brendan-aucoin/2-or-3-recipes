@@ -5,6 +5,7 @@
     overflow-wrap: break-word;
     min-height:450px;
     max-height:450px;
+    position:relative;
 }
 
 .individual-recipe-info-container{
@@ -15,6 +16,8 @@
   max-height:450px;
   overflow-y:hidden;
 }
+
+
 .individual-recipe-info-container:hover{
   box-shadow: 0 30px 40px rgba(0,0,0,.4);
 }
@@ -25,22 +28,23 @@
     background-size: contain;
 }
 
-.individual-recipe-name,.individual-recipe-desc{
-    text-align:center;
-}
 
 .individual-recipe-info-container{
-    text-align:center;
+    /* text-align:center; */
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    
 }
 .individual-recipe-desc{
     font-size:20px;
 }
-.individual-recipe-container > div {
+.individual-recipe-info-container {
     max-width: 320px;
     background-color: #f1f1f1;
 }
 
-.individual-recipe-container > div > p {
+.individual-recipe-info-container > p {
   padding: 10px;
 }
 
@@ -52,7 +56,13 @@
   font-size:20px;
 }
 
-
+.individual-recipe-author{
+  align-self:flex-end;
+  position:absolute;
+  bottom:0;
+  right:0;
+  font-size:1rem;
+}
 
 .individual-recipe-link{
   text-decoration:none;
