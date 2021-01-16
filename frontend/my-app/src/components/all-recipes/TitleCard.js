@@ -4,7 +4,7 @@ import Filter from './Filter';
 import Sort from './Sort';
 import FilterBox from './FilterBox';
 import SortBox from './SortBox';
-import background1 from './../../img/background1.jpg';
+import background1 from './../../img/menu_bar.jpeg';
 
 class TitleCard extends Component {
     state = {
