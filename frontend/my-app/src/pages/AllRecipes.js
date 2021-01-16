@@ -13,7 +13,9 @@ class AllRecipes extends Component {
         search: "",
         all_recipes: [],
         filter_recipes: [],
-        filter_tags: []
+        filter_tags: [],
+
+        filteredArrays:[]
     }
 
     componentDidMount() {
@@ -293,12 +295,21 @@ class AllRecipes extends Component {
         }
     }
 
+    handleTagFilterTest = (color,tag)=>{
+
+        
+        
+        
+    }
     render() {
         return (
             <div>
                 <TitleCard resetRecipes = {this.resetRecipes} handleSearchChange = {this.handleSearchChange} sortState={this.sortState} filterByTags={this.filterByTags} handleSearch = {this.handleSearch} tags = {tags}/>
-                <RecipeList filter_recipes = {this.state.filter_recipes} />
+                {/* <TitleCard resetRecipes = {this.resetRecipes} handleSearchChange = {this.handleSearchChange} sortState={this.sortState} filterByTags={this.handleTagFilterTest} handleSearch = {this.handleSearch} tags = {tags}/> */}
+
+                <RecipeList all_recipes = {this.state.all_recipes} filter_recipes = {this.state.filter_recipes} />
             </div>
+           
         );
     }
 }

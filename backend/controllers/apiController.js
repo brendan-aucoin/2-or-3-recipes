@@ -1,10 +1,12 @@
 const RecipeModel = require('./../Recipe');
 const upload = require('./../storage.js');
 
-
 module.exports = function(app,urlencodedParser){
-    
 
+
+    // app.get('/*',(req,res)=>{
+    //     res.sendFile(path.join(__dirname,'build','index.html'));
+    // })
     // the function where you add a new recipe to the database
     // you need the upload.single as the middleware
     app.post("/upload-recipe",urlencodedParser,upload.single('recipeImage'),(req,res)=>{
@@ -57,11 +59,6 @@ module.exports = function(app,urlencodedParser){
             console.log(err);
         })
     });
-
-
-    app.get('/*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'build', 'index.html'));
-      });
 }
 
 

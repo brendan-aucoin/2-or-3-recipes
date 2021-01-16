@@ -5,7 +5,7 @@ class RecipeList extends Component {
     }
 
     render() {
-        return (
+        return ( this.props.all_recipes.length !==0 ? (
             <div className="list-flex-container">
                 {
                     this.props.filter_recipes.map((recipe, index) => {
@@ -17,7 +17,10 @@ class RecipeList extends Component {
                         )
                     })
                 }
-             </div>
+             </div>)
+
+             :
+             (<div><h1>Recipes Loading.....</h1></div>)
         )
     }
 }

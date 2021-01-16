@@ -34,7 +34,7 @@ class Navbar extends Component{
     render(){
         return (
             <div className = "navbar">
-                <Link to = '/'><h2 className = "navbar-logo">2 or 3 Recipe</h2></Link>
+                <Link to = '/'><h2 className = "navbar-logo">2 or 3 Recipes</h2></Link>
                 <button id = "navbar-burger" onClick = {this.handleClick}></button>
                 <label htmlFor = "navbar-burger" className = "show-nav-menu-button">
                      <FontAwesomeIcon  icon={faBars} /> 
