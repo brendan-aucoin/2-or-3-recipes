@@ -2,16 +2,16 @@ import React from 'react';
 import  './../../styles/individual-recipe-styles.css';
 import ImageUnnavailable from './../../img/image-unnavailable.jpg';
 import {Link} from 'react-router-dom';
-import URL_PREFIX from './recipe-url-prefix';
 const wordCutoff = 25;
 const IndividualRecipe = ({id,imgPath,name,desc,author})=>{
     return(
         <Link to = {`/all-recipes/${id}`} className = "individual-recipe-link">
         <div className = "individual-recipe-container">
             <div className = "individual-recipe-info-container">
-                <img className = "individual-recipe-image" src = {imgPath ? `${URL_PREFIX}${imgPath}` : ImageUnnavailable}/>
+                <img className = "individual-recipe-image" src = {imgPath ? `/${imgPath}` : ImageUnnavailable} alt = ""/>
                 <p className = "individual-recipe-name">{name}</p>
                 <p className = "individual-recipe-desc">{splitDescription(desc,wordCutoff)}</p>
+                <p className  = "individual-recipe-author"> {author}</p>
             </div>
         </div>
         </Link>

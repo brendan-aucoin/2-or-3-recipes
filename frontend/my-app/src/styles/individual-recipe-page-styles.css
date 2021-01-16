@@ -63,6 +63,15 @@
     flex-direction:column;
     row-gap:2rem;
     font-size:1.4rem;
+    overflow-wrap:break-word;
+}
+
+.recipe-page-ingredient-list-element{
+    font-weight:bold;
+}
+
+.recipe-page-ingredients-title,.recipe-page-tags-title,.recipe-page-instructions-title,.recipe-page-cooking-info-title{
+    margin-left:20px;
 }
 
 
@@ -72,6 +81,22 @@
     margin-top:1rem;
     font-size:1.3rem;
     padding: 0 1rem;
+}
+
+/* the cooking info */
+.recipe-cooking-info{
+    margin-left:4rem;
+    margin-top:2rem;
+}
+
+.recipe-cooking-info div{
+    margin-bottom:1rem;
+    font-size:1.4rem;
+}
+
+.recipe-cooking-info-category{
+    margin-right:0.5rem;
+    font-weight:bold;
 }
 
 /* the tags */
@@ -184,5 +209,12 @@
     .recipe-page-description{
         text-align:start;
         font-size:1.2rem;
+    }
+
+    .recipe-ingredients-list{
+        font-size:1.1rem;
+    }
+    .recipe-cooking-info div{
+        font-size:1.1rem;
     }
 }

@@ -4,8 +4,10 @@ const displayIngredients = (recipe)=>{
     return recipe.ingredients.map((ingredient,index)=>{
         return (
             <div key = {index}>
-                <span>{ingredient.ingredient}: </span>
-                <span>{ingredient.portion}</span>
+                <li>
+                    <span className =  "recipe-page-ingredient-list-element">{ingredient.ingredient}: </span>
+                    <span>{ingredient.portion}</span>
+                </li>
             </div>
         );
     })
@@ -15,9 +17,9 @@ const RecipePageIngredients = ({recipe})=>{
         <div className = "recipe-page-ingredients">
             <h1 className = "recipe-page-ingredients-title">Ingredients</h1>
             {/* this where you will map all ingredients from the array */}
-            <div className = "recipe-ingredients-list">
+            <ul className = "recipe-ingredients-list">
                 {displayIngredients(recipe)}
-            </div>
+            </ul>
         </div>
     );
 }

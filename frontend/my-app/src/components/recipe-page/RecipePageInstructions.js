@@ -15,7 +15,7 @@ const displayInstructions = (recipe)=>{
 const RecipePageInstructions = ({recipe})=>{
     return (
         <div style = {{marginTop:"2rem"}}>
-            <h1>Instructions</h1>
+            <h1 className = "recipe-page-instructions-title">Instructions</h1>
             <div className = "recipe-page-instructions">
                 {displayInstructions(recipe)}   
             </div>
