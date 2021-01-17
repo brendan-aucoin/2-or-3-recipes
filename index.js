@@ -39,7 +39,7 @@ if(process.env.NODE_ENV === 'production'){
     app.use(express.static(path.join(__dirname,'my-app/build')));
     //handle react routing and returns al react apps
     app.get('*',function(req,res){
-        res.sendFile(path.join(__dirname,'../frontend/my-app/build','index.html'))
+        res.sendFile(path.join(__dirname,'my-app/build','index.html'))
     });
 }
 apiController(app,urlencodedParser);
