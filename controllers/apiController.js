@@ -38,6 +38,7 @@ module.exports = function(app,urlencodedParser){
                     date:new Date()
                 })
             })
+            res.send("BACK TO FRONTEND FROM PIC");
         }
         else{
             saveRecipe({
@@ -45,7 +46,7 @@ module.exports = function(app,urlencodedParser){
                 picture:null,
                 date:new Date()
             })
-
+            res.send("BACK TO FRONTEND FROM NO PIC");
         }
 
     });
