@@ -26,7 +26,7 @@ const app = express();
 
 // app.use(cors(corsOptions))
 app.use(bodyParser.json());
-app.use('/uploads',express.static('uploads'));
+app.use(path.join(__dirname,'/uploads'),express.static('uploads'));
 
 
 //mongoose
