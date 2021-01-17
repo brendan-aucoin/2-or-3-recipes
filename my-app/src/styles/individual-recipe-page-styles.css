@@ -217,4 +217,8 @@
     .recipe-cooking-info div{
         font-size:1.1rem;
     }
+
+    .recipe-ingredients-list{
+        margin-left:1rem;
+    }
 }
