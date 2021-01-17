@@ -90,6 +90,7 @@ class AddRecipe extends Component{
         };
         
         axios.post('/upload-recipe',form,config).then(response=>{
+            console.log("IN FRONTEND got response");
             this.goToHome();
 
         }).catch(error=>{
