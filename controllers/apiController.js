@@ -38,7 +38,6 @@ module.exports = function(app,urlencodedParser){
                     date:new Date()
                 })
             })
-            res.JSON({worked:"YES"});
         }
         else{
             saveRecipe({
@@ -47,7 +46,6 @@ module.exports = function(app,urlencodedParser){
                 date:new Date()
             })
 
-            res.JSON({worked:"YES"});
         }
 
     });

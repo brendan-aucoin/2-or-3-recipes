@@ -90,18 +90,20 @@ class AddRecipe extends Component{
         };
         
         axios.post('/upload-recipe',form,config).then(response=>{
-            console.log(response);
             this.goToHome();
 
         }).catch(error=>{
             console.log(error.response);
+            this.goToHome();
         })
         
     }
     
     goToHome = ()=>{
+        console.log("DOGG")
         window.scrollTo(0,0);
         window.location.reload();
+        
         
     }
     render(){
