@@ -40,6 +40,9 @@ if(process.env.NODE_ENV === 'production'){
     //handle react routing and returns al react apps
     
 }
+app.get('*',function(req,res){
+    res.sendFile(path.join(__dirname,'my-app/build','index.html'))
+});
 apiController(app,urlencodedParser);
 console.log(`Listening to PORT: ${PORT}`);
 
