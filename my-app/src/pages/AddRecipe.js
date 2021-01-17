@@ -30,8 +30,6 @@ class AddRecipe extends Component{
             {id:2, content:""}
         ],
     }
-
-
     fileSelectedHandler = e=>{
        if(!e.target || !e.target.files){return;}
         this.setState({
@@ -106,8 +104,6 @@ class AddRecipe extends Component{
         window.location.reload();
     }
     render(){
-        // you need to validate the form: make sure theres at least 1 ingredient and 1 instruction
-        // contains all the components of the add recipe page
         return (
             <div className = "make-recipe">
             

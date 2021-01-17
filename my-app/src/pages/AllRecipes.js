@@ -295,18 +295,10 @@ class AllRecipes extends Component {
         }
     }
 
-    handleTagFilterTest = (color,tag)=>{
-
-        
-        
-        
-    }
     render() {
         return (
             <div>
                 <TitleCard resetRecipes = {this.resetRecipes} handleSearchChange = {this.handleSearchChange} sortState={this.sortState} filterByTags={this.filterByTags} handleSearch = {this.handleSearch} tags = {tags}/>
-                {/* <TitleCard resetRecipes = {this.resetRecipes} handleSearchChange = {this.handleSearchChange} sortState={this.sortState} filterByTags={this.handleTagFilterTest} handleSearch = {this.handleSearch} tags = {tags}/> */}
-
                 <RecipeList all_recipes = {this.state.all_recipes} filter_recipes = {this.state.filter_recipes} />
             </div>
            

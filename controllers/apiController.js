@@ -1,6 +1,17 @@
 const RecipeModel = require('../schemas/Recipe');
-const upload = require('../image-uploading/storage.js');
+// const upload = require('../image-uploading/storage.js');
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
+const streamifier = require('streamifier');
+const multer = require('multer');
+
+cloudinary.config({
+    cloud_name: 'du03nd2uf',
+    api_key:'288238154484171',
+    api_secret:'juagTlxexFlStzfLBxMttnJd1Mk'
+});
+const upload = multer();
+var picture2 = {}
 module.exports = function(app,urlencodedParser){    
     // the function where you add a new recipe to the database
     // you need the upload.single as the middleware
@@ -16,33 +27,62 @@ module.exports = function(app,urlencodedParser){
         const convertToNumberProperties = JSON.parse(req.body.convertToNumberProperties);
         convertToNumberProperties.forEach(property=>convertStringToNumber(recipeContent,property))
 
-        
-        // if the user didnt include a file then just input null for the database image path
-        let picture = req.file ? req.file.path : null;
-        // on the database it turned \\(correct) to \(incorrect) so to fix you replace \\ with / ie: uploads\\dog.jpg => uploads/dog.jpg
-        if(picture){
-            picture = picture.replace("\\",'/');
+        if(req.file){
+            const picturePromise = uploadPicture(req);
+            picturePromise.then(pic=>{
+                saveRecipe({
+                    ...recipeContent,
+                    picture:pic.url,
+                    securePicture:pic.secure_url,
+                    date:new Date()
+                })
+            })
+        }
+        else{
+            saveRecipe({
+                ...recipeContent,
+                picture:null,
+                date:new Date()
+            })
         }
 
-        // create a new object with the content from the requests body, the picture path, and the date
-        const savedRecipe = {
-            ...recipeContent,
-            picture:picture,
-            date:new Date()
-        }
+    });
 
-        console.log(savedRecipe);
-        
+    const saveRecipe = (savedRecipe)=>{
         // save the new recipe you made to the database
         let newRecipe = new RecipeModel(savedRecipe);
         newRecipe.save();
-    });
+    }
+    const uploadPicture = async (req)=>{
+        let tempPicture = {};
+        let streamUpload = (req)=>{
+            return new Promise((resolve,reject)=>{
+                let stream = cloudinary.uploader.upload_stream(
+                    (error,result)=>{
+                        if(result){
+                            resolve(result);
+                        }
+                        else{
+                            reject(error);
+                        }
+                    }
+                );
+                streamifier.createReadStream(req.file.buffer).pipe(stream);
+            })
+        };
 
+       async function upload(req){
+           result = await streamUpload(req);
+           return result
+       } 
+
+        return upload(req);
+    
+    }
 
     app.get('/get-all-recipes',(req,res)=>{
         RecipeModel.find({},(err,data)=>{
             if(err){throw err}
-            // console.log(data);
             res.json(data);
         })
     });

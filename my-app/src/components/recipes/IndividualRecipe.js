@@ -8,7 +8,8 @@ const IndividualRecipe = ({id,imgPath,name,desc,author})=>{
         <Link to = {`/all-recipes/${id}`} className = "individual-recipe-link">
         <div className = "individual-recipe-container">
             <div className = "individual-recipe-info-container">
-                <img className = "individual-recipe-image" src = {imgPath ? `/${imgPath}` : ImageUnnavailable} alt = ""/>
+                {/* <img className = "individual-recipe-image" src = {imgPath ? `/${imgPath}` : ImageUnnavailable} alt = ""/> */}
+                <img className = "individual-recipe-image" src = {imgPath ? `${imgPath}` : ImageUnnavailable} alt = ""/>
                 <p className = "individual-recipe-name">{name}</p>
                 <p className = "individual-recipe-desc">{splitDescription(desc,wordCutoff)}</p>
                 <p className  = "individual-recipe-author"> {author}</p>
