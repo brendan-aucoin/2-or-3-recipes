@@ -100,8 +100,11 @@ class AddRecipe extends Component{
     }
     
     goToHome = ()=>{
-        window.scrollTo(0,0);
-        window.location.reload();
+        setTimeout(()=>{
+            window.scrollTo(0,0);
+            window.location.reload();
+        },200)
+        
     }
     render(){
         return (

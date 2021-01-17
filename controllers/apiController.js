@@ -27,7 +27,8 @@ module.exports = function(app,urlencodedParser){
         const convertToNumberProperties = JSON.parse(req.body.convertToNumberProperties);
         convertToNumberProperties.forEach(property=>convertStringToNumber(recipeContent,property))
 
-        if(req.file){
+        
+        if(req.file && (req.file.mimetype === 'image/jpeg' || req.file.mimetype === 'image/png' || req.file.mimetype === 'image/jpg')){
             const picturePromise = uploadPicture(req);
             picturePromise.then(pic=>{
                 saveRecipe({
