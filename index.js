@@ -37,15 +37,15 @@ const urlencodedParser = bodyParser.urlencoded({extended:false})
 if(process.env.NODE_ENV === 'production'){
     //serve any static files
     app.use(express.static(path.join(__dirname,'my-app/build')));
-    //handle react routing and returns al react apps
     
 }
+
+apiController(app,urlencodedParser);
+// to give you back index.html
 app.get('*',function(req,res){
     res.sendFile(path.join(__dirname,'my-app/build','index.html'))
 });
-apiController(app,urlencodedParser);
 console.log(`Listening to PORT: ${PORT}`);
-
 
 app.listen(PORT);
 

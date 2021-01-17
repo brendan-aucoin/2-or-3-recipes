@@ -92,12 +92,19 @@ class AddRecipe extends Component{
         };
         
         axios.post('/upload-recipe',form,config).then(response=>{
-            console.log(response)
+            console.log(response);
+            
+
         }).catch(error=>{
             console.log(error.response);
         })
+        this.goToHome();
     }
     
+    goToHome = ()=>{
+        window.scrollTo(0,0);
+        window.location.reload();
+    }
     render(){
         // you need to validate the form: make sure theres at least 1 ingredient and 1 instruction
         // contains all the components of the add recipe page

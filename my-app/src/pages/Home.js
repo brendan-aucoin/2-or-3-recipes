@@ -2,16 +2,15 @@ import React, {Component} from 'react';
 import './../styles/home-styles.css';
 import Header from './../components/home/Header';
 import RecipeFlexShowcase from './../components/home/RecipeFlexShowcase';
-import SearchBar from './../components/all-recipes/SearchBar';
 import axios from 'axios'
 class Home extends Component{
     state = {
         recipes:[],
-        latestRecipes:[],
-        testRecipes:[]
+        latestRecipes:[]
     }
 
     componentDidMount(){
+        window.scrollTo(0,0);
         axios.get('/get-all-recipes').then(res=>{
             const recipes = res.data;
             const numLatest = 6;
@@ -116,8 +115,6 @@ class Home extends Component{
     render(){
         return (
             <div className = "home-container">
-            {/* <SearchBar handleSearch = {this.handleSearch} /> */}
-                {/* the showcase */}
                 <Header />
                 {/* the latest recipes */}
                 <RecipeFlexShowcase title = {`Latest Recipes`} latestRecipes = {this.state.latestRecipes}/>
