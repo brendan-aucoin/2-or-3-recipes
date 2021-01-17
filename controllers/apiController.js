@@ -1,6 +1,6 @@
 const RecipeModel = require('../schemas/Recipe');
 const upload = require('../image-uploading/storage.js');
-
+const path = require('path');
 module.exports = function(app,urlencodedParser){    
     app.get('*',function(req,res){
         res.sendFile(path.join(__dirname,'my-app/build','index.html'))
