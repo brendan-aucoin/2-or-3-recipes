@@ -14,9 +14,13 @@ class RecipePage extends Component{
     state ={
         recipe:null,
         recipeDate:null,
-        tags:[],
-        calories:""
+        tags:[]
     }
+    /*
+        get the recipe defined by the route parameter (using a get request)
+
+        set the state of the recipe, the date, and the tags
+    */
     componentDidMount() {
         window.scrollTo(0, 0);
         let id = this.props.match.params.recipeID;
@@ -30,6 +34,8 @@ class RecipePage extends Component{
             });
         });
     }
+
+
     render(){
         const {recipe,recipeDate,tags} = this.state;
         return !this.state.recipe ? (<div><h1>Recipe Loading......</h1>  </div>) :(
@@ -56,17 +62,5 @@ class RecipePage extends Component{
     }
 }
 
-/* 
- <div>
-                    <div className = "recipe-title-container">
-                        <h1 className = "recipe-title-container">Veggie Borgars</h1>
-                        <img className = "recipe-page-picture" src ={corgi} />
-                    </div>
-                    <div className = "recipe-author-container">
-                        <p>Brendan</p>
-                        <p>2000/12/12</p>
-                    </div>
-                </div>
-*/
 
 export default RecipePage;

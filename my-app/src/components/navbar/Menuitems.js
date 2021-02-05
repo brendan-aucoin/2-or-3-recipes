@@ -1,3 +1,7 @@
+/*
+for the nav bar the menuitesm contain content (the name of the nav bar item), and a url, 
+a  class name becuase some you might want as having different css
+*/
 export const menuItems = [
     {
         content: 'Home',

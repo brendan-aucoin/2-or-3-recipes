@@ -1,3 +1,5 @@
+// this ended up not having much use in the production build.
+// but if you were to deploy the app in a different way then this is what you would want to do.
 const multer = require('multer');
 
 // storage strategy
@@ -7,7 +9,9 @@ const storage = multer.diskStorage({
     destination:function(req,file,cb){
         cb(null,'./uploads/')
     },
+    // you want a unique filename (what if you had burger.jpg twice, you don't wanna overwrite one)
     filename:function(req,file,cb){
+        // use Date.now for a unique filename
         cb(null,`${file.originalname}:${Date.now()}`);
     }
 });

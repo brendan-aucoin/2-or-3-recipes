@@ -6,31 +6,27 @@ const bodyParser = require('body-parser');
 const apiController = require('./controllers/apiController');
 const connectMongoose = require('./database/connection');
 
+// use the default port or fallback on port 5000.  I chose 5000 because that is what the proxy is for the frontend.
 const PORT = process.env.PORT || 5000;
+
+// set up the express app with all the middleware
 const app = express();
-
-
 app.use(bodyParser.json());
 
-
-//mongoose
+//connect to the database
 connectMongoose();
 
-const urlencodedParser = bodyParser.urlencoded({extended:false})
-
+// when you deploy the app, you want ot join the build folder and the backend. 
+//connecting the frontend to the backend
 if(process.env.NODE_ENV === 'production'){
-    //serve any static files
     app.use(express.static(path.join(__dirname,'my-app/build')));
-    
 }
 
-apiController(app,urlencodedParser);
-// to give you back index.html
-app.get('*',function(req,res){
-    res.sendFile(path.join(__dirname,'my-app/build','index.html'))
-});
-console.log(`Listening to PORT: ${PORT}`);
+// this contains all the routes for the app.
+apiController(app);
 
+// start the app
+console.log(`Listening to PORT: ${PORT}`);
 app.listen(PORT);
 
 

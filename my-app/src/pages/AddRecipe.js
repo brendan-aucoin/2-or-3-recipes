@@ -30,20 +30,30 @@ class AddRecipe extends Component{
             {id:2, content:""}
         ],
     }
+    /*
+        setting the states selected file to what the event has stored as a file (only the first one becuase you can only have 1 picture)
+    */
     fileSelectedHandler = e=>{
-       if(!e.target || !e.target.files){return;}
+       if(!e.target || !e.target.files || e.target.files.size === 0){return;}
         this.setState({
             selectedFile: e.target.files[0]
         })
     }
 
+    /*
+        takes in an event and a property you want to change.  this is for text fields
+    */
     handleFieldChange = (e,property)=>{
         this.setState({
             [property]: e.target.value
         })
     }
 
-
+    /* 
+        if you click on a tag (checkbox) you add that tagname to the array
+        if you uncheck a tag then you filter the array to not have that element in it
+        and then you set the state to the array of tags
+    */
     handleTagChange = (e,tagName)=>{
         // if they checked the tag
         const newTags = e.target.checked ? [...this.state.tags,tagName] : this.state.tags.filter(tag => tag !== tagName);
@@ -52,31 +62,59 @@ class AddRecipe extends Component{
         })
     }
 
-    //this takes in which index you are changing, the event and the field of the object you want to change (ie portion, ingredient)
+    /*
+    this takes in which index you are changing, the event and the field of the object you want to change (ie portion, ingredient)
+    */
     handleArrayChange = (index,e,property,field)=>{
-        const newIngredients = [...(this.state[property])];
-        newIngredients[index][field] = e.target.value;
-        this.setState({[property]:newIngredients})
+        //make a copy of the array that you want based on the property value (ingredients or instructions)
+        const newArray = [...(this.state[property])];
+        // change the array at the index you specify and what field of that object (portion, ingredient)
+        newArray[index][field] = e.target.value;
+        // set the state to the new array we made
+        this.setState({[property]:newArray})
     }
 
+    /*
+        delete one of the elements in the ingredients or instructions array
+
+    */
     handleDeleteArray = (id,e,property)=>{
+        // you cannot delete the last ingredient or instructions (every recipe has at least 1 thing in it, and one thing you have to do)
         if(this.state[property].length <= 1){return;}
-        const newIngredients = [...this.state[property]].filter(ingredient=>ingredient.id!==id);
-        this.setState({[property]:newIngredients})
+        // filter the array defined by the states property you pass in, and fitler
+        //it so that the element with the id you specify is no longer in the array
+        const newArray = [...this.state[property]].filter(field=>field.id!==id);
+        this.setState({[property]:newArray})
     }
 
+    /*
+        add a new element to the ingredients or instructions array,
+        the newElem is an object that you want to add to the end of the current array
+    */
     handleAddArray = (property,newElem)=>{
-        if(this.state[property].length > 40){return}
+        // you cant have more than 40 ingredients or instructions
+        const LIMIT = 40;
+        if(this.state[property].length > LIMIT){return}
+        // generate a random id
         newElem.id =  uuidv4();
-        const newIngredients = [...this.state[property], newElem];
-        this.setState({[property]:newIngredients})
+
+        const newArray = [...this.state[property], newElem];
+        this.setState({[property]:newArray})
     }
 
+    /*
+
+    */
     handleSubmit = e=>{
+        // don't refresh the page
         e.preventDefault();
-        // check form validation
+
+        // define what parts of the state you don't want included in the db
         const deleteProperties = ['selectedFile'];
+        // define what parts of the state should be numbers when inputted into the db
         const convertToNumberProperties = ['cookTime','prepTime','servings','calories'];
+
+        // create form data and add our state, the picture, and the special properties to it
         const form = new FormData();
         form.append('recipeImage',this.state.selectedFile);
         form.append("content",JSON.stringify(this.state));
@@ -89,6 +127,7 @@ class AddRecipe extends Component{
             }
         };
         
+        // use axios to make a post request to the backend
         axios.post('/upload-recipe',form,config).then(response=>{
             console.log("IN FRONTEND got response");
             this.goToHome();
@@ -100,12 +139,13 @@ class AddRecipe extends Component{
         
     }
     
+    /*
+        scroll the window to the top of the page, and reload the page.
+        you would probably want to include some cool effects maybe (or a popup box saying upload successful).  More to be added in the future
+    */
     goToHome = ()=>{
-        console.log("DOGG")
         window.scrollTo(0,0);
         window.location.reload();
-        
-        
     }
     render(){
         return (

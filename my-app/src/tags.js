@@ -1,3 +1,5 @@
+// an array of all the tags we have.  they have a name, a colour, and if they are checked or not
+//to be checked is for the filtering functionality
 export const tags = [
     {name:'vegan',color:"#31FF85",checked:false},
     {name:'vegetarian',color:"#63FFA3",checked:false},

@@ -8,7 +8,6 @@ const IndividualRecipe = ({id,imgPath,name,desc,author})=>{
         <Link to = {`/all-recipes/${id}`} className = "individual-recipe-link">
         <div className = "individual-recipe-container">
             <div className = "individual-recipe-info-container">
-                {/* <img className = "individual-recipe-image" src = {imgPath ? `/${imgPath}` : ImageUnnavailable} alt = ""/> */}
                 <img className = "individual-recipe-image" src = {imgPath ? `${imgPath}` : ImageUnnavailable} alt = ""/>
                 <p className = "individual-recipe-name">{name}</p>
                 <p className = "individual-recipe-desc">{splitDescription(desc,wordCutoff)}</p>
@@ -18,8 +17,11 @@ const IndividualRecipe = ({id,imgPath,name,desc,author})=>{
         </Link>
     );
 }
-/* this function takes in a recipes description and returns a shorter version of it if there were more than numWords in it.  
-it places a .... at the end of the description*/
+/* 
+Helper Function:
+this function takes in a recipes description and returns a shorter version of it if there were more than numWords in it.  
+it places a .... at the end of the description
+*/
 const splitDescription = (description,numWords)=>{
     let descriptionList = description.split(" ");
     if(descriptionList.length <numWords){return description;}

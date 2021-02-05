@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// this is all the fields that we need for our document. 
 const recipe = new mongoose.Schema({
     recipeName: String,
     author:String,
@@ -16,4 +17,5 @@ const recipe = new mongoose.Schema({
     description:String
 });
 
+// model the Recipes by using mongoose
 module.exports = RecipeModel = mongoose.model('recipes',recipe);
